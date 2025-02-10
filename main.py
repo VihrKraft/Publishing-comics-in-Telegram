@@ -3,9 +3,11 @@ from downoad_images import download_image
 from telegram_bot import publish_comics
 import random
 import shutil
+from dotenv import load_dotenv
 
 
 def main():
+    load_dotenv()
     url = 'https://xkcd.com/info.0.json'
     response = requests.get(url)
     response.raise_for_status() 
