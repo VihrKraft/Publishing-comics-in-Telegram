@@ -4,10 +4,14 @@ from telegram_bot import publish_comics
 import random
 import shutil
 from dotenv import load_dotenv
+import os
+import telegram
 
 
 def main():
     load_dotenv()
+    chat_id = os.environ['TELEGRAM_CHAT_ID']
+    bot = telegram.Bot(token=os.environ['TELEGRAM_BOT_TOKEN'])
     url = 'https://xkcd.com/info.0.json'
     response = requests.get(url)
     response.raise_for_status() 
@@ -22,7 +26,7 @@ def main():
     title_comic_book = comic_book['title']
     file_name = f'{title_comic_book}.png'
     download_image(img_url, file_name)
-    publish_comics(file_name)
+    publish_comics(file_name, chat_id, bot)
     shutil.rmtree('images')
 
 
