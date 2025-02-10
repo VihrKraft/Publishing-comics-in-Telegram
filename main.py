@@ -6,10 +6,12 @@ import shutil
 from dotenv import load_dotenv
 import os
 import telegram
+from pathlib import Path
 
 
 def main():
     load_dotenv()
+    Path("images").mkdir(parents=True, exist_ok=True)
     chat_id = os.environ['TELEGRAM_CHAT_ID']
     bot = telegram.Bot(token=os.environ['TELEGRAM_BOT_TOKEN'])
     url = 'https://xkcd.com/info.0.json'
