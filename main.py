@@ -33,8 +33,10 @@ def main():
     title_comic_book = comic_book['title']
     file_name = f'{title_comic_book}.png'
     download_image(img_url, file_name)
-    publish_comics(file_name, chat_id, bot)
-    shutil.rmtree('images')
+    try:
+        publish_comics(file_name, chat_id, bot)
+    finally:
+        shutil.rmtree('images')
 
 
 if __name__ == '__main__':
